@@ -1,8 +1,25 @@
 # shedos-keyring
 
-The trust anchor for `[shedos]`. Every other ShedOS package is signed against
-this key; losing it means every installed system stops accepting upgrades
-until the new key is manually trusted.
+The trust anchor for `[shedos]`, the [ShedOS](https://shedos.org) package
+channel. It ships the signing key (`shedos.gpg`), the fingerprints every
+machine locally signs (`shedos-trusted`), the fingerprints it deletes again
+(`shedos-retired`), and `trust-keys.sh`, which does that work on upgrade and
+at first boot. Every other ShedOS package is signed against this key; losing
+it means every installed system stops accepting upgrades until the new key is
+manually trusted.
+
+What changes here decides what the entire fleet trusts, and a machine left
+without the right key cannot verify the repository database, so it cannot
+upgrade its way back out. Nothing lands in this repository casually.
+
+**Build-out in progress.** Production lives at
+[Theshedman/shedos](https://github.com/Theshedman/shedos) until the multi-repo
+cutover completes; this repo publishes to a staging channel.
+
+[shed-os/shedos-ci](https://github.com/shed-os/shedos-ci) builds and tests this
+repo and requests publication;
+[shed-os/shedos-release](https://github.com/shed-os/shedos-release) signs and
+publishes.
 
 ## First-time setup (run once, offline, before the first release)
 
