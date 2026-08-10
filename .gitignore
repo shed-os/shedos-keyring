@@ -1,0 +1,16 @@
+# makepkg byproducts: pkg/ is what package() installs into and src/ is where
+# makepkg would extract sources. Neither holds anything of ours — the PKGBUILD
+# sits at the root and the tracked tree is tree/.
+pkg/
+src/
+*.pkg.tar.zst
+*.pkg.tar.zst.sig
+*.log
+
+# where the shared pipeline collects what it built
+dist/
+
+# The ceremony writes the private signing key beside the PKGBUILD. Without
+# these, one `git add -A` before the shred publishes it.
+shedos-private.asc
+*-private.asc
