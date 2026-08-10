@@ -7,7 +7,6 @@ until the new key is manually trusted.
 ## First-time setup (run once, offline, before the first release)
 
 ```
-cd packaging/shedos-keyring
 ./scripts/key-ceremony.sh
 ```
 
@@ -31,10 +30,11 @@ fingerprint must match the committed `tree/shedos-trusted`.
 ## Key rotation
 
 Rotation is a staged, dual-key operation — the full runbook lives at
-[`docs/key-rotation.md`](../../docs/key-rotation.md). Short form:
+[`docs/key-rotation.md`](https://github.com/Theshedman/shedos/blob/main/docs/key-rotation.md).
+Short form:
 
 1. Generate the new key offline; export only the public half.
-2. `scripts/rotate-signing-key.sh <new.pub>` merges it into
+2. The runbook's `rotate-signing-key.sh` merges it into
    `tree/shedos.gpg` and appends the fingerprint to
    `tree/shedos-trusted` — both keys stay trusted. Also add the
    fingerprint to migrate's `SHEDOS_KEY_FPRS`.

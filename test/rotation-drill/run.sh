@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # test/rotation-drill/run.sh — offline signer-swap drill for the package-signing
-# key rotation (docs/key-rotation.md, phase 2).
+# key rotation (the signing-key rotation runbook, phase 2).
 #
 # It proves the one thing that can lock the fleet out of [shedos]: that while the
 # keyring trusts BOTH the old and new signing keys (the dual-trust window opened
@@ -41,7 +41,7 @@ export GNUPGHOME="$signgpg"
 
 # Three throwaway keys: A = current signer, B = the new signer (phase 2), C = an
 # attacker/untrusted key. 2048-bit for test speed — the trust flow is key-size
-# agnostic; the real ceremony uses 4096 (scripts/rotate-ceremony.sh).
+# agnostic; the real signing keys are 4096.
 _genkey() {
     gpg --batch --generate-key /dev/stdin >/dev/null 2>&1 <<EOF
 %no-protection
